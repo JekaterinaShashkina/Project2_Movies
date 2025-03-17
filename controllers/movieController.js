@@ -76,3 +76,17 @@ exports.createMovie = async (req, res) => {
         res.status(500).json({ message: 'An error occurred while creating a movie' })    
     } }
 
+// Update movie category information 
+exports.updateMovie = async (req, res) => {   
+    const { id } = req.params    
+    const { name } = req.body    
+    try {     
+        const film = await models.film.findByPk(id)      
+        if (!film) {       
+            return res.status(404).json({ message: 'Movie not found' })      
+        }     await movie.update({ name })      
+        res.status(200).json(category)    
+    } catch (error) {     
+        console.error(error)      
+        res.status(500).json({ message: 'An error occurred while updating movie' })    
+    } }  
