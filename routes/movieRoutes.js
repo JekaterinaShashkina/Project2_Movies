@@ -8,5 +8,9 @@ router.get('/movies', movieController.getAllMovies)
 router.get('/movies/:id', movieController.getMovieById) 
 // POST movie
 router.post('/movies/', movieController.createMovie)
+// PUT movie
+router.put('/movies/:id', movieController.updateMovie)
+// DELETE movie
+router.delete('/movies/:id', movieController.deleteMovie)
 
 module.exports = router 
