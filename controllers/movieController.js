@@ -1,24 +1,10 @@
 const db = require('../config/database') 
+const getFilmIncludes = require('../utils/getFilmIncludes')
 const actor = require('../models/actor')
 
 const initModels = require("../models/init-models")  
 
 const models = initModels(db)  
-
-const getFilmIncludes = () => [
-    {
-        model: models.category,  
-        as: "category_id_categories",  
-        attributes: ['category_id', 'name'],
-        through: { attributes: [] } 
-    },
-    {
-        model: models.actor, 
-        as: "actor_id_actors",  
-        attributes: ['actor_id', 'first_name', 'last_name'],
-        through: { attributes: [] } 
-    }
-];
 
 // Get all movies
 exports.getAllMovies = async (req, res) => {   
