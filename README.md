@@ -68,6 +68,16 @@ Server hakkab töötama **http://localhost:3000** aadressil
 | `GET` | `/search/category/:category_id` | Filmi otsing kategooria järgi.  
 | `GET` | `/search/actors/:film_id` | Filmis osalenud näitlejate nimekirja saamine.  
 
+## Pagineerimine
+Pagineerimine töötab kui soovite saada kõik filmid ja kõik näitlejad
+Päringud koos leheküljendusega võtavad vastu parameetreid **?page=** ja **?limit=**.
+
+Vaikimisi, kui page ja limit pole määratud → kuvatakse esimene lehekülg 10 kirjetega.
+Päringute näited:
+**GET /movies** - Esimene lehekülg, 10 filmi (vaikimisi)
+**GET /movies?page=2&limit=5** - Teine lehekülg, 5 filmi
+**GET /actors?page=3&limit=20** - Kolmas lehekülg, 20 näitlejad 
+
 ## Võimalikud  vead
 
 - *400 Bad Request* – Vigased sisendandmed

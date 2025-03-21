@@ -4,11 +4,27 @@ const initModels = require("../models/init-models")
 
 const models = initModels(db)   
 
-// Get all actors  
+// Get all actors with pagination
 exports.getAllActors = async (req, res) => {   
-    try {     
-        const actors = await models.actor.findAll()      
-        res.status(200).json(actors)    
+    try {  
+        let { page = 1, limit = 10 } = req.query;
+        page = Math.max(parseInt(page), 1);
+        limit = Math.max(parseInt(limit), 1);
+        const offset = (page - 1) * limit;
+
+        const { count, rows: actors }= await models.actor.findAndCountAll({
+            limit,
+            offset,
+            attributes: ['actor_id', 'first_name', 'last_name']
+        })  
+
+        res.status(200).json({
+            totalActors: count,
+            totalPages: Math.ceil(count / limit),
+            currentPage: page,
+            actors
+        })    
+
     } catch (error) {     
         console.error(error)      
         res

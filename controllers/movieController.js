@@ -6,14 +6,27 @@ const initModels = require("../models/init-models")
 
 const models = initModels(db)  
 
-// Get all movies
+// Get all movies with pagination
 exports.getAllMovies = async (req, res) => {   
-    try {     
-        const films = await models.film.findAll({
+    try { 
+        let { page = 1, limit = 10 } = req.query;
+        
+        page = Math.max(parseInt(page), 1);
+        limit = Math.max(parseInt(limit), 1);
+        const offset = (page - 1) * limit;
+        
+        const { count, rows: films} = await models.film.findAndCountAll({
+            limit,
+            offset,
             include: getFilmIncludes(),
             attributes: ['film_id', 'title', 'description', 'release_year', 'language_id']
         })      
-        res.status(200).json(films)    
+        res.status(200).json({
+            totalFilms: count,
+            totalPages: Math.ceil(count / limit),
+            currentPage: page,
+            films
+        })    
     } catch (error) {     
         console.error(error)      
         res
