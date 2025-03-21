@@ -50,6 +50,15 @@ Server hakkab töötama **http://localhost:3000** aadressil
 | `PUT` | `/movies/:id` | Uuendada filmi info |
 | `DELETE` | `/movies/:id` | Eemaldada filmi |
 
+### Näitlejad
+| Metood | URL | Kirjeldus |
+|-------|-----|----------|
+| `GET` | `/actors` | Saada kõik näitlejad |
+| `GET` | `/actors/:id` | Saada näitleja ID järgi|
+| `POST` | `/actors` | Lisada uue näitleja |
+| `PUT` | `/actors/:id` | Uuendada näitleja info |
+| `DELETE` | `/actors/:id` | Eemaldada näitleja |
+
 ### Otsing
 | Meetod | URL | Kirjeldus |
 |-------|-----|----------|
