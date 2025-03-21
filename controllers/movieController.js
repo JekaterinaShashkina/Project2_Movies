@@ -108,7 +108,7 @@ exports.updateMovie = async (req, res) => {
             last_update: new Date()
         })     
         if (category && Array.isArray(category)) {
-            await models.film_category.destroy({ where: { film_id: id } }); // Удаляем старые категории
+            await models.film_category.destroy({ where: { film_id: id } }); // old cats deleting
             const categoryEntries = category.map(catId => ({
                 film_id: id,
                 category_id: catId,
@@ -118,7 +118,7 @@ exports.updateMovie = async (req, res) => {
             console.log('Categories updated', categoryEntries);
         }
         if (actors && Array.isArray(actors)) {
-            await models.film_actor.destroy({ where: { film_id: id } }); // Удаляем старых актёров
+            await models.film_actor.destroy({ where: { film_id: id } }); // old actors deleting
             const actorEntries = actors.map(actorId => ({
                 film_id: id,
                 actor_id: actorId,
@@ -142,10 +142,8 @@ exports.deleteMovie = async (req, res) => {
             return res.status(404).json({ message: 'Movie not found' })      
         } 
         await models.film_category.destroy({ where: { film_id: id } });
-        console.log(`Удалены категории для фильма ID ${id}`);
         
         await models.film_actor.destroy({ where: { film_id: id } });
-        console.log(`Удалены актёры для фильма ID ${id}`);
         
         await film.destroy()      
         res.status(204).json()    

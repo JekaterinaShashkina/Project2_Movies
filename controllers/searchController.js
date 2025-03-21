@@ -123,3 +123,38 @@ exports.searchMoviesByCategory = async (req, res) => {
         res.status(500).json({ message: 'Error searching films by category', error: error.message });
     }
 }
+
+exports.getActorsByFilm = async (req, res) => {
+    const { film_id } = req.params
+
+    if (!film_id) {
+        return res.status(400).json({ message: "Enter the film ID"})
+    }
+
+    try {
+        const film = await models.film.findByPk(film_id, {
+            include: [
+                {
+                    model: models.actor,
+                    as: "actor_id_actors",
+                    attributes: ['actor_id', 'first_name', 'last_name'],
+                    through: { attributes: [] }
+                }
+            ],
+            attributes: ['film_id', 'title']
+        });
+
+        if (!film) {
+            return res.status(404).json({ message: `Not found film with ID ${film_id}` });
+        }
+
+        res.status(200).json({
+            film_id: film.film_id,
+            title: film.title,
+            actors: film.actor_id_actors.length > 0 ? film.actor_id_actors : "Actors is not found"
+        });
+    } catch (error) {
+        console.error('Error by searching actors by film:', error);
+        res.status(500).json({ message: 'Error by searching actors by film', error: error.message });
+    }
+}

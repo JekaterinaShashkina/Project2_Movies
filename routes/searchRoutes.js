@@ -13,4 +13,8 @@ router.get('/language/:language_id', searchController.searchMoviesByLanguage)
 
 // GET search films by category
 router.get('/category/:category_id', searchController.searchMoviesByCategory)
+
+//GET film actors by film id
+router.get('/actors/:film_id', searchController.getActorsByFilm)
+
 module.exports = router 
