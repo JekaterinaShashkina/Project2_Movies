@@ -5,6 +5,7 @@ var _film = require("./film");
 var _film_actor = require("./film_actor");
 var _film_category = require("./film_category");
 var _language = require("./language");
+var _users = require("./users");
 
 function initModels(sequelize) {
   var actor = _actor(sequelize, DataTypes);
@@ -13,6 +14,7 @@ function initModels(sequelize) {
   var film_actor = _film_actor(sequelize, DataTypes);
   var film_category = _film_category(sequelize, DataTypes);
   var language = _language(sequelize, DataTypes);
+  var users = _users(sequelize, DataTypes);
 
   actor.belongsToMany(film, { as: 'film_id_films', through: film_actor, foreignKey: "actor_id", otherKey: "film_id" });
   category.belongsToMany(film, { as: 'film_id_film_film_categories', through: film_category, foreignKey: "category_id", otherKey: "film_id" });
@@ -38,6 +40,7 @@ function initModels(sequelize) {
     film_actor,
     film_category,
     language,
+    users,
   };
 }
 module.exports = initModels;

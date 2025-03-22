@@ -77,6 +77,26 @@ Server hakkab töötama **http://localhost:3000** aadressil
 | `GET` | `/search/category/:category_id` | Filmi otsing kategooria järgi.  
 | `GET` | `/search/actors/:film_id` | Filmis osalenud näitlejate nimekirja saamine.  
 
+## Autentimine ja autoriseerimine
+API on kaitstud autoriseerimisega ja toetab kasutajate autentimist JSON Web Tokeni (JWT) abil.
+
+### Kasutaja registreerimine
+
+**POST /auth/register**
+
+### Sisselogimine (login)
+**POST /auth/login**
+Kui parool on korrektne, tagastab:
+    {
+    "message": "Logged in",
+    "token": "<JWT-token>"
+    }
+### Kaitstud päringute tegemine
+Et pääseda ligi kaitstud API otspunktidele (nt filmide lisamine, kustutamine vms), tuleb lisada JWT token päisesse:
+
+Näide (Thunder Client / Postman): 
+*Authorization: Bearer <sinu_token_siia>* 
+
 ## Pagineerimine
 Pagineerimine töötab kui soovite saada kõik filmid ja kõik näitlejad
 Päringud koos leheküljendusega võtavad vastu parameetreid **?page=** ja **?limit=**.
