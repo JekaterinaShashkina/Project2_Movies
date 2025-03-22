@@ -59,6 +59,15 @@ Server hakkab töötama **http://localhost:3000** aadressil
 | `PUT` | `/actors/:id` | Uuendada näitleja info |
 | `DELETE` | `/actors/:id` | Eemaldada näitleja |
 
+### Keeled
+| Metood | URL | Kirjeldus |
+|-------|-----|----------|
+| `GET` | `/language` | Saada kõik keeled |
+| `GET` | `/language/:id` | Saada keel ID järgi|
+| `POST` | `/language` | Lisada uue keele |
+| `PUT` | `/language/:id` | Uuendada keele info |
+| `DELETE` | `/language/:id` | Eemaldada keel |
+
 ### Otsing
 | Meetod | URL | Kirjeldus |
 |-------|-----|----------|

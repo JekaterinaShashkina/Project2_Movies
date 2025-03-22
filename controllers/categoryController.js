@@ -25,8 +25,9 @@ exports.createCategory = async (req, res) => {
     } catch (error) {     
         console.error(error)      
         res.status(500).json({ message: 'An error occurred while creating a movie category' })    
-    } }
- 
+    } 
+}
+
 // Get movie category information by ID 
 exports.getCategoryById = async (req, res) => {   
     const { id } = req.params    
@@ -50,7 +51,7 @@ exports.updateCategory = async (req, res) => {
         const category = await models.category.findByPk(id)      
         if (!category) {       
             return res.status(404).json({ message: 'Movie category not found' })      
-        }     await category.update({ name, last_update: new Date() })      
+        }     await category.update({ name })      
         res.status(200).json(category)    
     } catch (error) {     
         console.error(error)      
