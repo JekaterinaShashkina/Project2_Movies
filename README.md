@@ -86,6 +86,7 @@ API on kaitstud autoriseerimisega ja toetab kasutajate autentimist JSON Web Toke
 
 ### Sisselogimine (login)
 **POST /auth/login**
+
 Kui parool on korrektne, tagastab:
     {
     "message": "Logged in",
