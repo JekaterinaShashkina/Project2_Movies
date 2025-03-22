@@ -17,11 +17,11 @@ REST API filmide, näitlejate ja kategooriate juhtimiseks
 
 ### luua .env file andmebaasi seadistusega
 
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=movies_db
-DB_USER=postgres
-DB_PASS=yourpassword
+- DB_HOST=localhost
+- DB_PORT=5432
+- DB_NAME=movies_db
+- DB_USER=postgres
+- DB_PASS=yourpassword
 
 ## Serveri käivitamine
 
