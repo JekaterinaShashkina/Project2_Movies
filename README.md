@@ -92,6 +92,7 @@ Kui parool on korrektne, tagastab:
     "message": "Logged in",
     "token": "<JWT-token>"
     }
+
 ### Kaitstud päringute tegemine
 Et pääseda ligi kaitstud API otspunktidele (nt filmide lisamine, kustutamine vms), tuleb lisada JWT token päisesse:
 
@@ -99,7 +100,8 @@ Näide (Thunder Client / Postman):
 *Authorization: Bearer <sinu_token_siia>* 
 
 ## Pagineerimine
-Pagineerimine töötab kui soovite saada kõik filmid ja kõik näitlejad
+Pagineerimine töötab kui soovite saada kõik filmid ja kõik näitlejad.
+
 Päringud koos leheküljendusega võtavad vastu parameetreid **?page=** ja **?limit=**.
 
 Vaikimisi, kui page ja limit pole määratud → kuvatakse esimene lehekülg 10 kirjetega.
@@ -107,6 +109,20 @@ Päringute näited:
 **GET /movies** - Esimene lehekülg, 10 filmi (vaikimisi)
 **GET /movies?page=2&limit=5** - Teine lehekülg, 5 filmi
 **GET /actors?page=3&limit=20** - Kolmas lehekülg, 20 näitlejad 
+
+## Sorteerimine
+Võimalus sorteerimist **movie** ja **actor** tunnuste jaoks
+
+Vaikimisi sorteeritakse filmid ja näitlejad id järgi.
+Filmid saab sorteerida 'title', 'release_year' ja 'rating' järgi.
+Näitlejad saab sorteerida 'first_name' ja 'last_name' järgi.
+Saab valida järjekorda kas 'DESC' või 'ASC'
+
+Päringute näited:
+**/movies?sortBy=title&order=asc** - filmide sorteerimine pealkirjate järgi
+**/movies?sortBy=release_year&order=desc** - filmide sorteerimise väljalaske aastate järgi kahenevas järjekorras
+**/actors?sortBy=first_name** - näitlejate sorteerimine eesnimede järgi 
+**/movies?page=2&limit=5&sortBy=rating&order=asc** - filmide pagineerimine ja sorteerimine reitingu järgi
 
 ## Võimalikud  vead
 

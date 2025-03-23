@@ -9,8 +9,13 @@ const models = initModels(db)
 // Get all movies with pagination
 exports.getAllMovies = async (req, res) => {   
     try { 
-        let { page = 1, limit = 10 } = req.query;
+        let { page = 1, limit = 10, sortBy = "film_id", order = "asc" } = req.query;
         
+        const allowedSortFields = ['title', 'release_year', 'rating', 'film_id'];
+        if (!allowedSortFields.includes(sortBy)) sortBy = 'film_id';
+
+        order = order.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
+
         page = Math.max(parseInt(page), 1);
         limit = Math.max(parseInt(limit), 1);
         const offset = (page - 1) * limit;
@@ -18,8 +23,9 @@ exports.getAllMovies = async (req, res) => {
         const { count, rows: films} = await models.film.findAndCountAll({
             limit,
             offset,
+            order: [[sortBy, order]],
             include: getFilmIncludes(),
-            attributes: ['film_id', 'title', 'description', 'release_year', 'language_id']
+            attributes: ['film_id', 'title', 'description', 'release_year', 'language_id', "rating"]
         })      
         res.status(200).json({
             totalFilms: count,
