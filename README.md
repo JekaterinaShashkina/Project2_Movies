@@ -97,7 +97,7 @@ Kui parool on korrektne, tagastab:
 Et pääseda ligi kaitstud API otspunktidele (nt filmide lisamine, kustutamine vms), tuleb lisada JWT token päisesse:
 
 Näide (Thunder Client / Postman): 
-*Authorization: Bearer <sinu_token_siia>* 
+*Authorization: Token <sinu_token_siia>* 
 
 ## Pagineerimine
 Pagineerimine töötab kui soovite saada kõik filmid ja kõik näitlejad.
